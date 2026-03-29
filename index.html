@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staicey's Portfolio | Developer & Designer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* 1. Target only text elements for the font fix */
+body, h1, h2, h3, h4, h5, p, a, span, button, .navbar-brand, .nav-link {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* 2. Fix the 'Bootstrap' word break ONLY for headings and badges */
+h1, h2, h3, h4, .badge, .nav-link {
+    white-space: nowrap !important;
+}
+
+/* 3. Fix the gradient without moving the text */
+.gradient-text {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    display: inline-block;
+}
+        
+        :root {
+            --primary-purple: #8b5cf6;
+            --primary-pink: #ec4899;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary-purple), var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        section { padding: 80px 0; }
+
+        /* DARK MODE OVERRIDES */
+        body.dark-mode {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1e293b !important;
+            border-bottom: 1px solid #334155;
+        }
+
+        body.dark-mode .nav-link, body.dark-mode .navbar-brand {
+            color: #f8fafc !important;
+        }
+
+        body.dark-mode .card, body.dark-mode #contactForm, body.dark-mode footer {
+            background-color: #1e293b !important;
+            color: white !important;
+            border: 1px solid #334155;
+        }
+
+        body.dark-mode .bg-gray-100 {
+            background-color: #1e293b !important;
+        }
+
+        body.dark-mode p.text-gray-600, body.dark-mode .text-muted {
+            color: #cbd5e1 !important;
+        }
+
+        /* FLOATING TOGGLE BUTTON */
+        #theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-purple), var(--primary-pink));
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 2000;
+            cursor: pointer;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        #theme-toggle:hover { transform: scale(1.1); }
+
+        .btn-custom {
+            background: linear-gradient(to right, var(--primary-purple), var(--primary-pink));
+            color: white;
+            border: none;
+            transition: transform 0.2s;
+        }
+        .btn-custom:hover { transform: scale(1.05); color: white; opacity: 0.9; }
+
+        .card { border: none; transition: 0.3s; border-radius: 15px; }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .profile-img {
+            border: 5px solid var(--primary-purple);
+            padding: 5px;
+            max-width: 250px;
+            border-radius: 50%;
+        }
+
+        .cert-card {
+            border-left: 4px solid var(--primary-purple);
+        }
+
+        /* Social Icons Animation */
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: var(--primary-pink) !important;
+        }
+        
+        body.dark-mode .social-icon.text-dark {
+            color: #f8fafc !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold gradient-text" href="#">Staicey's Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <button id="theme-toggle" title="Toggle Dark/Light Mode">🌙</button>
+
+    <section class="container text-center pt-32">
+        <div class="row align-items-center">
+            <div class="col-lg-7 text-lg-start">
+                <h1 class="text-5xl font-bold mb-4 leading-tight">
+                    Hello 👋, I'm <br><span class="gradient-text">Staicey Ndlovu</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-4">
+                    I am a Computer Science student and a professional programmer proficient in <b>Python, JavaScript, and PHP</b>.
+                    I focus on creating responsive, modern solutions that solve real-world problems with clean, efficient code.
+                </p>
+                <div class="mt-4 d-flex align-items-center flex-wrap gap-3">
+                    <a href="https://github.com/patiancesndlovu-eng" class="btn btn-dark"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/patiance-ndlovu-314728353/" target="_blank" class="btn btn-primary" style="background-color: #0077b5; border: none;">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:patiancesndlovu@gmail.com" class="btn btn-custom rounded-pill px-4">Email Me</a>
+                </div>
+            </div>
+            <div class="col-lg-5 mt-5 mt-lg-0">
+                <img src="profile.jpg" alt="Staicey Ndlovu" class="profile-img shadow mx-auto d-block">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container text-center">
+        <h2 class="text-4xl font-bold mb-4">About Me</h2>
+        <p class="max-w-3xl mx-auto text-gray-600 mb-5">
+            I build and design websites from start to finish. I use <b>Python, PHP, and JavaScript</b> to build strong backends, 
+            and <b>HTML, CSS, and Figma</b> to create beautiful user interfaces.
+        </p>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h1 id="counter1" class="text-5xl font-bold gradient-text">0</h1>
+                <p class="fw-bold">Projects </p>
+            </div>
+            <div class="col-md-4">
+                <h1 id="counter2" class="text-5xl font-bold gradient-text">0</h1>
+                <p class="fw-bold">Technologies</p>
+            </div>
+            <div class="col-md-4">
+                <h1 id="counter3" class="text-5xl font-bold gradient-text">0</h1>
+                <p class="fw-bold">Certificates</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-gray-100">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-5">Skills & Certifications</h2>
+            <div class="row g-4 mb-5">
+                <div class="col-md-3"><div class="card p-4 shadow-sm h-100">
+                    <i class="fas fa-code fa-2x mb-3 text-purple-500"></i>
+                    <h4 class="fw-bold">Languages</h4>
+                    <p>JS, PHP, Python</p>
+                </div></div>
+                <div class="col-md-3"><div class="card p-4 shadow-sm h-100">
+                    <i class="fas fa-layer-group fa-2x mb-3 text-pink-500"></i>
+                    <h4 class="fw-bold">Frameworks</h4>
+                    <p>Bootstrap, Tailwind CSS</p>
+                </div></div>
+                <div class="col-md-3"><div class="card p-4 shadow-sm h-100">
+                    <i class="fas fa-tools fa-2x mb-3 text-purple-500"></i>
+                    <h4 class="fw-bold">Tools</h4>
+                    <p>Figma, VS Code, Git</p>
+                </div></div>
+                <div class="col-md-3"><div class="card p-4 shadow-sm h-100">
+                    <i class="fas fa-database fa-2x mb-3 text-pink-500"></i>
+                    <h4 class="fw-bold">Database</h4>
+                    <p>MySQL</p>
+                </div></div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-4 gradient-text">Professional Certifications</h3>
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-4"><div class="card p-3 shadow-sm cert-card text-start"><small>Cybersecurity</small><h6 class="fw-bold">AI-Powered Fundamentals</h6></div></div>
+                <div class="col-md-4"><div class="card p-3 shadow-sm cert-card text-start" style="border-left-color: var(--primary-pink);"><small>OS</small><h6 class="fw-bold">Linux for Beginners</h6></div></div>
+                <div class="col-md-4"><div class="card p-3 shadow-sm cert-card text-start"><small>Systems</small><h6 class="fw-bold">Linux Network Admin</h6></div></div>
+                <div class="col-md-4"><div class="card p-3 shadow-sm cert-card text-start" style="border-left-color: var(--primary-pink);"><small>Cloud</small><h6 class="fw-bold">AWS CloudWatch</h6></div></div>
+                <div class="col-md-4"><div class="card p-3 shadow-sm cert-card text-start"><small>Networking</small><h6 class="fw-bold">Cisco Associates</h6></div></div>
+            </div>
+        </div>
+    </section>
+
+  <section id="projects" class="container">
+    <h2 class="text-center text-4xl font-bold mb-5" style="color: #ec4899; font-family: 'Poppins', sans-serif;">Projects</h2>
+    <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow h-100 p-3" style="background-color: #1e293b; border: 1px solid #334155;">
+                <h5 class="fw-bold" style="color: #ec4899;">Safe Haven Vault Pro</h5>
+                <p style="color: #94a3b8;">An object-oriented credentials manager featuring master-key authentication and local data persistence.</p>
+                <div class="mt-auto">
+                    <span class="badge bg-dark mb-2">Python</span>
+                    <span class="badge bg-dark mb-2">Tkinter</span>
+                    <a href=" https://patiancesndlovu-eng.github.io/vault_system/" class="btn btn-custom btn-sm w-100" style="background-color: #ec4899; color: white;">View Security System</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow h-100 p-3" style="background-color: #1e293b; border: 1px solid #334155;">
+                <h5 class="fw-bold" style="color: #ec4899;">Skyview Towers Executive</h5>
+                <p style="color: #94a3b8;">A comprehensive hospitality suite with room reservations, service billing, and secure staff portals.</p>
+                <div class="mt-auto">
+                    <span class="badge bg-dark mb-2">Python</span>
+                    <span class="badge bg-dark mb-2">Logic Flow</span>
+                    <a href="https://patiancesndlovu-eng.github.io/hotel_system/" class="btn btn-custom btn-sm w-100" style="background-color: #ec4899; color: white;">View Hotel System</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow h-100 p-3" style="background-color: #1e293b; border: 1px solid #334155;">
+                <h5 class="fw-bold" style="color: #ec4899;">SkyTime Digital</h5>
+                <p style="color: #94a3b8;">A productivity utility featuring a real-time recursive clock, countdown timer, and hardware-integrated audio alarms.</p>
+                <div class="mt-auto">
+                    <span class="badge bg-dark mb-2">Python</span>
+                    <span class="badge bg-dark mb-2">winsound</span>
+                    <a href=" https://patiancesndlovu-eng.github.io/System_clock/" class="btn btn-custom btn-sm w-100" style="background-color: #ec4899; color: white;">View Clock System</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow h-100 p-3" style="background-color: #1e293b; border: 1px solid #334155;">
+                <h5 class="fw-bold" style="color: #ec4899;">Lumina Library Elite</h5>
+                <p style="color: #94a3b8;">A sophisticated archival system for book indexing, member tracking, and automated due-date notifications.</p>
+                <div class="mt-auto">
+                    <span class="badge bg-dark mb-2">Python</span>
+                    <span class="badge bg-dark mb-2">SQL</span>
+                    <a href="https://patiancesndlovu-eng.github.io/library-system/" class="btn btn-custom btn-sm w-100" style="background-color: #ec4899; color: white;">View Library System</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <section id="contact" class="bg-gray-100">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
+            
+            <form id="contactForm" class="max-w-xl mx-auto bg-white p-5 rounded shadow mb-5">
+                <input type="text" id="name" class="form-control mb-3" placeholder="Your Name" required>
+                <input type="email" id="email" class="form-control mb-3" placeholder="Your Email" required>
+                <textarea id="message" class="form-control mb-3" rows="4" placeholder="Message" required></textarea>
+                <button type="submit" class="btn btn-custom w-100 py-2">Send Message</button>
+            </form>
+
+            <div class="mt-4">
+                <p class="fw-bold mb-3 text-gray-600">Connect on Social Media</p>
+                <div class="d-flex justify-content-center gap-4">
+                    <a href="https://www.facebook.com/" target="_blank" class="social-icon" style="color: #1877F2; font-size: 2rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/?hl=en" target="_blank" class="social-icon" style="color: #E4405F; font-size: 2rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="social-icon text-dark" style="font-size: 2rem;"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <h5 class="fw-bold gradient-text mb-2"> Patiance Staicey Ndlovu</h5>
+                    <p class="text-muted small mb-0">
+                        &copy; <span id="display-year">2026</span> All Rights Reserved.
+                    </p>
+                    <p class="small fw-semibold mt-1">
+                        Revised by <span class="gradient-text"> Patiance Staicey Ndlovu</span> • 2026
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-4 mt-md-0">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://github.com/patiancesndlovu-eng" class="social-icon text-dark"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="https://www.linkedin.com/in/patiance-ndlovu-314728353/" class="social-icon text-primary"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="mailto:patiancesndlovu@gmail.com" class="social-icon text-danger"><i class="fas fa-envelope fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 opacity-25">
+            <div class="text-center">
+                <p class="text-muted" style="font-size: 0.75rem;">
+                    Built with <i class="fas fa-heart text-pink-500"></i> in 2026.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeBtn.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeBtn.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') setTheme('dark');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.contains('dark-mode') ? setTheme('light') : setTheme('dark');
+        });
+
+        // Animated Counter Function
+        function animateCounter(id, end, duration) {
+            let start = 0;
+            const element = document.getElementById(id);
+            if(!element) return;
+            const increment = end / (duration / 16);
+            const update = () => {
+                start += increment;
+                if (start < end) {
+                    element.innerText = Math.floor(start);
+                    requestAnimationFrame(update);
+                } else { element.innerText = end; }
+            };
+            update();
+        }
+
+        window.onload = () => {
+            animateCounter("counter1", 3, 2000); 
+            animateCounter("counter2", 8, 2000); 
+            animateCounter("counter3", 5, 2000); 
+            
+            const yr = document.getElementById("display-year");
+            if(yr) yr.innerText = new Date().getFullYear();
+        };
+
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            alert("Thank you, Staicey has received your message!");
+            this.reset();
+        });
+    </script>
+</body>
+</html>
